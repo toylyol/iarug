@@ -1,0 +1,79 @@
+---
+title: "R as GIS"
+format: revealjs
+code-fold: true
+code-overflow: wrap
+params:
+  state: "AZ"
+execute:
+  eval: false
+  echo: true
+  warning: false
+  include: true
+  cache: false
+---
+
+## Why use R as a GIS?
+
+![]()
+
+
+## Setting Up
+
+```{r set up}
+
+# Source the functions script
+
+source("function.R")
+
+# List packages to load
+
+packages <- c("sf", "dplyr", "tigris", "hereR")
+
+# Load all required packages
+
+invisible( lapply(packages, library, character.only = TRUE) )
+
+```
+
+```{r obtain hospital data}
+
+# Query CMS Provider Data Catalog
+
+query <- paste0(
+  "https://data.cms.gov/provider-data/api/1/datastore/query/nrdb-3fcy/0",
+  "?conditions[0][property]=State&conditions[0][value]=", params$state,
+  "&conditions[0][operator]=="
+)
+  
+raw <- jsonlite::fromJSON(query)
+  
+hospital_data <- raw$results
+  
+## See how to filter DKAN API: https://dkan.readthedocs.io/en/latest/user-guide/guide_api.html
+
+```
+
+::: {.callout-tip}
+This is a helpful hint for audience.
+:::
+
+## Learn More (1/2)
+
+Here are some resources I have found helpful translating knowledge from a GIS like QGIS to R:
+
+- [*Geocomputation with R*](https://r.geocompx.org/) (great to get a solid foundation)
+
+- [Yan Holtz' R Graph Gallery](https://r-graph-gallery.com/328-hexbin-map-of-the-usa.html) (many geosptial data viz tutorials are available, including the popular hexbin map)
+
+- [R for the Rest of Us' Mapping with R](https://rfortherestofus.com/courses/mapping/) (not free, but very helpful for learning many ways to visualize geospatial data in R)
+
+# Learn More (2/2)
+
+- [*Analyzing US Census Data: Methods, Maps, and Models in R*](https://walker-data.com/census-r/spatial-analysis-with-us-census-data.html) (especially Chapter 7) 
+
+- [*Hands-On Spatial Data Science with R*](https://spatialanalysis.github.io/handsonspatialdata/index.html) (great for GeoDa users)
+
+- [UChicago Center for Spatial Data Science Tutorials](https://spatialanalysis.github.io/tutorials/) (also great for GeoDa users)
+
+- [Josiah Perry's Hot Spot Analysis Tutorial](https://www.youtube.com/watch?v=OnMNZwJywjs) (a great overview of the underlying spatial statistics, even if you don't use the {sfdep} package)
