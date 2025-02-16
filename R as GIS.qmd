@@ -1,6 +1,9 @@
 ---
-title: "R as GIS"
-format: revealjs
+title: "Using R as a Geographic Information System"
+author: "Toyin Ola"
+format:
+  revealjs: 
+    theme: [default, custom.scss]
 code-fold: true
 code-overflow: wrap
 params:
@@ -15,28 +18,42 @@ execute:
 
 ## Why use R as a GIS?
 
-![]()
+![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-artwork/reproducibility_court.png)
 
+## Example: Finding Maternity Care Deserts
 
-## Setting Up
+Consider what steps you would have to take if you wanted to see which parts of `r params$state` do not have a hospital within inpatient labor and delivery (L&D) units within a 45-minute drive.
 
-```{r set up}
+:::{.incremental}
 
-# Source the functions script
+- [x] Obtain a list of hospitals with L&D.
+- [x] Geocode hospital addresses.
+- [x] Obtain `r params$state` geographic boundaries.
+- [x] Determine a 45-minute radius around each hospital.
+- [x] Visualize the results.
+
+:::
+
+## Step 1
+
+Obtain a list of `r params$state` hospitals with L&D from the CMS [Provider Data Catalog](https://data.cms.gov/provider-data/dataset/nrdb-3fcy).
+
+:::{.panel-tabset}
+
+### Code
+
+```{r obtain hospital data}
+#| code-fold: false
+
+# Source script with function to query HERE API
 
 source("function.R")
 
-# List packages to load
+# List and load primary packages
 
 packages <- c("sf", "dplyr", "tigris", "hereR")
 
-# Load all required packages
-
 invisible( lapply(packages, library, character.only = TRUE) )
-
-```
-
-```{r obtain hospital data}
 
 # Query CMS Provider Data Catalog
 
@@ -54,8 +71,18 @@ hospital_data <- raw$results
 
 ```
 
+### Raw Results
+
+A sample of the raw results will be shown here.
+
+:::
+
+## Step 4
+
 ::: {.callout-tip}
-This is a helpful hint for audience.
+
+If you want to try it out without signing up for a HERE API key, use the data available on [GitHub](https://github.com/toylyol/iarug-gis).
+
 :::
 
 ## Learn More (1/2)
@@ -68,7 +95,8 @@ Here are some resources I have found helpful translating knowledge from a GIS li
 
 - [R for the Rest of Us' Mapping with R](https://rfortherestofus.com/courses/mapping/) (not free, but very helpful for learning many ways to visualize geospatial data in R)
 
-# Learn More (2/2)
+
+## Learn More (2/2)
 
 - [*Analyzing US Census Data: Methods, Maps, and Models in R*](https://walker-data.com/census-r/spatial-analysis-with-us-census-data.html) (especially Chapter 7) 
 
@@ -77,3 +105,37 @@ Here are some resources I have found helpful translating knowledge from a GIS li
 - [UChicago Center for Spatial Data Science Tutorials](https://spatialanalysis.github.io/tutorials/) (also great for GeoDa users)
 
 - [Josiah Perry's Hot Spot Analysis Tutorial](https://www.youtube.com/watch?v=OnMNZwJywjs) (a great overview of the underlying spatial statistics, even if you don't use the {sfdep} package)
+
+
+```{r resources}
+#| echo: false
+
+# https://stackoverflow.com/questions/79049572/how-to-use-font-awesome-icons-as-bullet-points-in-quarto-revealjs-presentation
+
+# https://stackoverflow.com/questions/78646332/font-awesome-doesnt-change-bullet-points-in-revealjs-quarto
+
+# https://docs.fontawesome.com/web/style/lists
+
+# https://jsfiddle.net/VR2hP/
+
+# https://quarto.org/docs/computations/execution-options.html#fenced-echo
+
+# https://www.andreashandel.com/posts/2023-06-13-custom-callouts-quarto/
+
+# https://emilhvitfeldt.com/post/slidecraft-colors-fonts/
+
+# https://quarto.org/docs/presentations/revealjs/themes.html
+
+# https://stackoverflow.com/questions/74362331/inside-chunk-quarto-codes-not-working-properly
+
+# https://stackoverflow.com/questions/74437799/how-to-make-quarto-revealjs-presentation-text-full-width
+
+# https://stackoverflow.com/questions/64002239/huge-left-margin-in-reveal-js
+
+# https://github.com/quarto-dev/quarto-cli/discussions/2337
+
+# TODO: Reduce slide margins.
+# TODO: Create custom callout.
+
+```
+
