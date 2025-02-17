@@ -1,0 +1,6 @@
+"0","hospital_df <- read.csv(""data/az_data.csv"") |> 
+  select(-c(X))
+"
+"2","Error in select(read.csv(""data/az_data.csv""), -c(X)) : 
+  could not find function ""select""
+"
