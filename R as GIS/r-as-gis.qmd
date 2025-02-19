@@ -553,6 +553,10 @@ Here are some resources I have found helpful translating knowledge from a GIS li
 
 # customizing callouts in SCSS feature request: https://github.com/quarto-dev/quarto-cli/discussions/10024
 
+# customizing callout icons: https://github.com/quarto-dev/quarto-cli/issues/844#issuecomment-1779437411
+
+# customizing callout icons: https://github.com/saforem2/lattice23/blob/main/css/callouts.css
+
 # scaling slides: https://github.com/quarto-dev/quarto-cli/discussions/1840
 
 # creating grid layout feature request: https://github.com/quarto-dev/quarto-cli/discussions/6166
