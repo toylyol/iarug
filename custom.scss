@@ -1,9 +1,41 @@
 /*-- scss:defaults --*/
 
-$theme-darkteal: #066b76;
+$darkteal: #066b76;
+$darkolive: #6b7606;
 
-$presentation-heading-color: $theme-darkteal;
-$link-color: lighten($theme-darkteal, 5%);
-
+$presentation-heading-color: $darkteal;
+$link-color: lighten($darkteal, 5%);
 
 /*-- scss:rules --*/
+
+.reveal .slide div.callout-note {
+  border-left-color: $darkteal !important;
+}
+
+.reveal .slide div.callout-tip {
+  border-left-color: $darkolive !important;
+}
+
+// remove icons 
+
+.reveal .slide div.callout-note .callout-icon::before {
+  background-image: url('') !important;
+}
+
+.reveal .slide div.callout-tip .callout-icon::before {
+  background-image: url('') !important;
+}
+
+// format images
+
+.scaled-image{
+  max-height: 100%;
+  align-content:'center';
+  margin-top: 50px;
+}
+
+.scaled-larger-image{
+  max-height: 200%;
+  align-content:'center';
+  margin-top: 50px;
+}

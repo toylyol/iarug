@@ -47,7 +47,7 @@ Consider what steps you would have to take if you wanted to see which parts of `
 |jsonlite | | Query CMS API to obtain data on hospitals|
 |tidygeocoder | | Geocode hospital addresses|
 |dplyr | | Wrangle data|
-|stringr| | Use text data to filter data|
+|stringr| | Use text to filter data|
 |tigris | | Download Census Bureau TIGER/Line geographic boundaries|
 |sf | | Manipulate geosptial data|
 |hereR | | Query HERE API to determine 45-minute driving radius|
@@ -56,8 +56,7 @@ Consider what steps you would have to take if you wanted to see which parts of `
 
 ::: {.callout-note  appearance="simple"}
 
-## Custom Function
-To help query the HERE API, there is one user-defined tryLocation() function to source. This function is courtesy of [Hannah Recht](https://www.hrecht.com/r-drive-time-analysis-tutorial/tutorial.html)). 
+To help query the HERE API, there is one user-defined tryLocation() function to source. This function is courtesy of [Hannah Recht](https://www.hrecht.com/r-drive-time-analysis-tutorial/tutorial.html). 
 
 :::
 
@@ -318,7 +317,6 @@ mapview::mapview(isochrones)
 
 ::: {.callout-tip  appearance="simple"}
 
-## Try it Yourself
 If you want to try it out without signing up for a HERE API key, use the data available on [GitHub](https://github.com/toylyol/iarug-gis).
 
 :::
@@ -400,7 +398,7 @@ Visualize the hospitals and isochrones in an interactive map.
 
 ### Code
 
-```{r}
+```{r create leaflet map}
 
 # Specify text for popups
 
@@ -419,7 +417,7 @@ color_icon <- awesomeIcons(
   icon = 'location-dot',
   iconColor = 'black',
   library = 'fa',
-  markerColor = ifelse(hospitals$inpatient == 'Yes', 'green', 'gray')) # can't use HEX codes
+  markerColor = ifelse(hospitals$inpatient == 'Yes', 'green', 'gray')) # no HEX codes
 
 # Make an interactive map
 
@@ -455,7 +453,7 @@ leaflet() %>%
 
 ### Results
 
-```{r}
+```{r presenter generate leaflet map}
 #| eval: true
 #| echo: false
 #| include: true
@@ -477,7 +475,7 @@ color_icon <- awesomeIcons(
   icon = 'location-dot',
   iconColor = 'black',
   library = 'fa',
-  markerColor = ifelse(hospitals$inpatient == 'Yes', 'green', 'gray')) # can't use HEX codes
+  markerColor = ifelse(hospitals$inpatient == 'Yes', 'green', 'gray')) # no HEX codes
 
 # Make an interactive map
 
@@ -513,8 +511,18 @@ leaflet() %>%
 
 :::
 
-## Possibilities
+## Possibilities {style='text-align: center;'}
 
+::: {.r-stack}
+
+![](images/ggplot2-hexbin-map.png){.fragment .fade-in-then-out .scaled-larger-image}
+
+![](images/tmap-low-access-choropleth.png){.fragment .fade-in-then-out .scaled-image}
+
+![](images/ggplot2-low-access-Gi-star-clusters.png){.fragment .fade-in-then-out .scaled-image}
+
+![](images/flexdashboard-bakery-map.png){.fragment .fade-in-then-out .scaled-image}
+:::
 
 ## Learn More
 
@@ -539,21 +547,22 @@ Here are some resources I have found helpful translating knowledge from a GIS li
 
 # customizing font color in SCSS: https://emilhvitfeldt.com/post/slidecraft-colors-fonts/
 
-# customizing font color in SCSS: https://quarto.org/docs/presentations/revealjs/themes.html
+# customizing theme in SCSS: https://quarto.org/docs/presentations/revealjs/themes.html
 
 # creating custom callout: https://www.andreashandel.com/posts/2023-06-13-custom-callouts-quarto/
 
-# customizing callouts: https://github.com/quarto-dev/quarto-cli/discussions/4755
+# customizing callouts in SCSS feature request: https://github.com/quarto-dev/quarto-cli/discussions/10024
 
-# creating grid div: https://github.com/quarto-dev/quarto-cli/discussions/9029
+# scaling slides: https://github.com/quarto-dev/quarto-cli/discussions/1840
 
-# creating listing page grid and scaling slides: https://github.com/quarto-dev/quarto-cli/discussions/1840
+# creating grid layout feature request: https://github.com/quarto-dev/quarto-cli/discussions/6166
 
 # changing {leaflet} icon color conditionally: https://rstudio.github.io/leaflet/articles/markers.html
 
 # changing {leaflet} icon color conditionally: https://stackoverflow.com/questions/72897404/r-r-leaflet-addawesomemarkers-how-to-set-conditional-colours-based-on-column-va
 
-# TODO: Customize callout background color using CSS.
-# TODO: Add listing page-style grid with images of other other GIS outputs.
+# resizing image while maintaining aspect ratio: https://stackoverflow.com/questions/3029422/how-to-auto-resize-an-image-while-maintaining-aspect-ratio?rq=2
+
+# using fragments for images: https://github.com/quarto-dev/quarto-cli/discussions/9139
 
 ```
