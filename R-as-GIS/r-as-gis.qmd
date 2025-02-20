@@ -404,7 +404,7 @@ Visualize the hospitals and isochrones in an interactive map.
 # Specify text for popups
 
 hosp_popup <- paste0(
-  "<b>", hospitals$facility_name, "</b>", "<br/>",
+  "$lt;b$gt;", hospitals$facility_name, "$lt;/b$gt;", "$lt;br/$gt;",
   hospitals$full_address
 )
 
@@ -573,5 +573,7 @@ Here are some resources I have found helpful translating knowledge from a GIS li
 # avoiding build errors: https://github.com/orgs/community/discussions/76938
 
 # creating self-contained file to publish: https://forum.posit.co/t/sharing-quarto-revealjs/147970/3
+
+# escaping HTML so code shows in slides: https://revealjs.com/code/#html-entities-4.1.0
 
 ```
