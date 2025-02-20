@@ -404,7 +404,7 @@ Visualize the hospitals and isochrones in an interactive map.
 # Specify text for popups
 
 hosp_popup <- paste0(
-  "$lt;b$gt;", hospitals$facility_name, "$lt;/b$gt;", "$lt;br/$gt;",
+  "&lt;b&gt;", hospitals$facility_name, "&lt;/b&gt;", "&lt;br/&gt;",
   hospitals$full_address
 )
 
