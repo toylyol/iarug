@@ -1,0 +1,39 @@
+"0","#| eval: true"
+"0","#| echo: false"
+"0","#| include: false"
+"0",""
+"0","# Source script with function to query HERE API"
+"0",""
+"0","source(""function.R"")"
+"0",""
+"0","# List and load primary packages"
+"0",""
+"0","packages <- c(""sf"", ""dplyr"", ""leaflet"")"
+"0",""
+"0","invisible(lapply(packages, library, character.only = TRUE))"
+"2","Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.3.1; sf_use_s2() is TRUE
+"
+"2","
+Attaching package: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
