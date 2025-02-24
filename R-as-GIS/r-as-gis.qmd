@@ -400,6 +400,8 @@ Visualize the hospitals and isochrones in an interactive map.
 ### Code
 
 ```{html}
+#| results: markup 
+
 # Use HTML to format text for hospital popup
 
 hosp_popup <- paste0(
