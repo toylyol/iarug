@@ -399,15 +399,21 @@ Visualize the hospitals and isochrones in an interactive map.
 
 ### Code
 
-```{r create leaflet map}
-#| results: markup
-
-# Specify text for popups
+```{html}
+# Use HTML to format text for hospital popup
 
 hosp_popup <- paste0(
   "<b>", hospitals$facility_name, "</b>", "<br/>",
   hospitals$full_address
 )
+
+```
+
+<br>
+
+```{r create leaflet map}
+
+# Specify text for isochrone popup
 
 iso_popup <- paste0(
   "This is a 45-minute driving radius around ", isochrones$facility_name, "."
@@ -577,6 +583,8 @@ Here are some resources I have found helpful translating knowledge from a GIS li
 
 # creating self-contained file to publish: https://forum.posit.co/t/sharing-quarto-revealjs/147970/3
 
-# escaping HTML so code shows in slides: https://quarto-webr.thecoatlessprofessor.com/tests/qwebr-test-escape-html-output-characters.html
+# escaping HTML so code shows in slides: https://quarto-webr.thecoatlessprofessor.com/tests/qwebr-test-escape-html-output-characters.html (did not work)
+
+# example of slides with HTML code: https://github.com/spcanelon/slides/blob/main/2022-09-29-ccd-sips/index.qmd
 
 ```
