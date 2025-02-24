@@ -258,7 +258,7 @@ Query the HERE API to determine a 45-minute driving radius (i.e., [isochrone](ht
 
 set_key(Sys.getenv("HERE_API_KEY"))
 
-# Loop over points to make isochrones file
+# Loop over point data to make isochrones file (using Hannah Recht's function)
 
 ## select hospitals w/ L&D
 
@@ -400,11 +400,12 @@ Visualize the hospitals and isochrones in an interactive map.
 ### Code
 
 ```{r create leaflet map}
+#| results: markup
 
 # Specify text for popups
 
 hosp_popup <- paste0(
-  "&lt;b&gt;", hospitals$facility_name, "&lt;/b&gt;", "&lt;br/&gt;",
+  "<b>", hospitals$facility_name, "</b>", "<br/>",
   hospitals$full_address
 )
 
@@ -442,7 +443,8 @@ leaflet() %>%
               fillOpacity = 0.5, 
               group = isochrones$facility_name,
               popup = ~iso_popup,
-              highlightOptions = highlightOptions(weight = 3,
+              highlightOptions = highlightOptions(color = "#527c29",
+                                                  weight = 3,
                                                   bringToFront = TRUE)
   ) %>%
   addLayersControl(
@@ -500,7 +502,8 @@ leaflet() %>%
               fillOpacity = 0.5, 
               group = isochrones$facility_name,
               popup = ~iso_popup,
-              highlightOptions = highlightOptions(weight = 3,
+              highlightOptions = highlightOptions(color = "#527c29",
+                                                  weight = 3,
                                                   bringToFront = TRUE)
   ) %>%
   addLayersControl(
@@ -574,6 +577,6 @@ Here are some resources I have found helpful translating knowledge from a GIS li
 
 # creating self-contained file to publish: https://forum.posit.co/t/sharing-quarto-revealjs/147970/3
 
-# escaping HTML so code shows in slides: https://revealjs.com/code/#html-entities-4.1.0
+# escaping HTML so code shows in slides: https://quarto-webr.thecoatlessprofessor.com/tests/qwebr-test-escape-html-output-characters.html
 
 ```
