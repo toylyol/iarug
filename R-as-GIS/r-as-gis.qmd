@@ -399,23 +399,14 @@ Visualize the hospitals and isochrones in an interactive map.
 
 ### Code
 
-```{html}
-#| results: asis 
-
-# Use HTML to format text for hospital popup
-
-hosp_popup <- paste0(
-  "<b>", hospitals$facility_name, "</b>", "<br/>",
-  hospitals$full_address
-)
-
-```
-
-<br>
-
 ```{r create leaflet map}
 
 # Specify text for isochrone popup
+
+hosp_popup <- paste0(
+  hospitals$facility_name, " (",
+  hospitals$full_address, ")"
+)
 
 iso_popup <- paste0(
   "This is a 45-minute driving radius around ", isochrones$facility_name, "."
@@ -462,6 +453,16 @@ leaflet() %>%
 
 ```
 
+::: {.callout-tip  appearance="simple"}
+
+Use HTML to format text in a {leaflet} popup.
+
+![](images/formating-with-html-1.png){height="50"} 
+![](images/formating-with-html-2.png){height="50"}
+
+:::
+
+
 ### Results
 
 ```{r presenter generate leaflet map}
@@ -472,8 +473,8 @@ leaflet() %>%
 # Specify text for popups
 
 hosp_popup <- paste0(
-  "<b>", hospitals$facility_name, "</b>", "<br/>",
-  hospitals$full_address
+  hospitals$facility_name, " (",
+  hospitals$full_address, ")"
 )
 
 iso_popup <- paste0(
