@@ -23,17 +23,17 @@ editor_options:
 
 ## Why use R as a GIS?
 
-![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-artwork/reproducibility_court.png){fig-alt="This is a fuzzy monsters illustration from Allison Horst. Reproducibility is on trial with an excited fuzzy monster judge, a please fuzzy monster lawyer, and a R Markdown document on the witness stand as 'Exhibit A.' The fuzzy monster lawyer has a 'nothing futher!' caption."}
+![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-artwork/reproducibility_court.png)
 
 ## Example: Finding Maternity Care Deserts
 
-Consider what steps you would have to take if you wanted to see which parts of `r params$state` do not have a hospital with an inpatient labor and delivery (L&D) unit within a 45-minute drive.
+Consider what steps you would have to take if you wanted to see which parts of `r params$state` do not have a hospital with inpatient labor and delivery (L&D) units within a 45-minute drive.
 
 :::{.incremental}
 
 1. Obtain a list of hospitals with L&D.
 2. Geocode hospital addresses.
-3. Determine a 45-minute radius around each hospital with L&D.
+3. Determine a 45-minute radius around each hospital.
 4. Obtain `r params$state` geographic boundaries.
 5. Visualize the results.
 
@@ -66,7 +66,7 @@ To help query the HERE API, there is one user-defined tryLocation() function to 
 <br>
 
 ::: aside
-*A [free API key](https://platform.here.com/access/) is required to use the {hereR} package.*
+*A [free API key](https://platform.here.com/access/) is required to use {hereR} package.*
 :::
 
 :::
@@ -95,7 +95,7 @@ invisible(lapply(packages, library, character.only = TRUE))
 
 ## Step 1
 
-Obtain a list of `r params$state` hospitals that reported maternal health data from the CMS [Provider Data Catalog](https://data.cms.gov/provider-data/dataset/nrdb-3fcy). Determine which hospitals do **not** have L&D units.
+Obtain a list of `r params$state` hospitals with L&D from the CMS [Provider Data Catalog](https://data.cms.gov/provider-data/dataset/nrdb-3fcy). Determine which hospitals do **not** have L&D.
 
 
 :::{.panel-tabset}
@@ -133,7 +133,7 @@ head(no_inpatient)
 
 ::: aside
 
-*Check the [DKAN API documentation](https://dkan.readthedocs.io/en/latest/user-guide/guide_api.html) for filtering options.*
+*Check [DKAN API documentation](https://dkan.readthedocs.io/en/latest/user-guide/guide_api.html) for filtering options.*
 
 :::
 
@@ -179,7 +179,7 @@ head(no_inpatient)
 
 ## Step 2
 
-Geocode hospital addresses and turn into a geospatial dataset.
+Geocode the hospitals addresses and turn into a geospatial dataset.
 
 :::{.panel-tabset}
 
@@ -242,7 +242,7 @@ mapview::mapview(hospitals)
 
 ## Step 3
 
-Query the HERE API to determine a 45-minute driving radius (i.e., [isochrone](https://en.wikipedia.org/wiki/Isochrone_map)) around each hospital with L&D.
+Query the HERE API to determine a 45-minute driving radius (i.e., [isochrone](https://en.wikipedia.org/wiki/Isochrone_map)) around each hospital.
 
 :::{.panel-tabset}
 
@@ -320,7 +320,7 @@ mapview::mapview(isochrones)
 
 ::: {.callout-tip  appearance="simple"}
 
-If you want to try this out without signing up for a HERE API key, use the data available on [GitHub](https://github.com/toylyol/iarug-gis).
+If you want to try it out without signing up for a HERE API key, use the data available on [GitHub](https://github.com/toylyol/iarug-gis).
 
 :::
 
@@ -411,8 +411,7 @@ hosp_popup <- paste0(
 )
 
 iso_popup <- paste0(
-  "This is a 45-minute driving radius around ", 
-  stringr::str_to_title(isochrones$facility_name), "."
+  "This is a 45-minute driving radius around ", isochrones$facility_name, "."
 )
 
 # Create color palette
@@ -463,8 +462,8 @@ leaflet() %>%
 
 Use HTML to format text in a {leaflet} popup.
 
-![](images/formating-with-html-1.png){height="50" fig-alt="This is a code snippet showing how to to use HTML tags to bold text and add line break in {leaflet} map popups."} 
-![](images/formating-with-html-2.png){height="50" fig-alt="This is an example of the resulting {leaflet} popup with bold text and a line break."}
+![](images/formating-with-html-1.png){height="50"} 
+![](images/formating-with-html-2.png){height="50"}
 
 :::
 
@@ -483,8 +482,7 @@ hosp_popup <- paste0(
 )
 
 iso_popup <- paste0(
-  "This is a 45-minute driving radius around ", 
-  stringr::str_to_title(isochrones$facility_name), "."
+  "This is a 45-minute driving radius around ", isochrones$facility_name, "."
 )
 
 # Create color palette
@@ -537,14 +535,13 @@ leaflet() %>%
 
 ::: {.r-stack}
 
-![](images/ggplot2-hexbin-map.png){.fragment .fade-in-then-out .scaled-larger-image fig-alt="This is a hexbin chloropleth map of the United States created using {ggplot2}. Its purpose is to show the type of maps that are possible to create using R as a GIS."}
+![](images/ggplot2-hexbin-map.png){.fragment .fade-in-then-out .scaled-larger-image}
 
-![](images/tmap-low-access-choropleth.png){.fragment .fade-in-then-out .scaled-image fig-alt="This is a chloropleth map of the United States created using {tmap}. There is a histogram included under the legend on the right-hand side of the map. The purpose of displaying this map is to show the type of maps that are possible to create using R as a GIS."}
+![](images/tmap-low-access-choropleth.png){.fragment .fade-in-then-out .scaled-image}
 
-![](images/ggplot2-low-access-Gi-star-clusters.png){.fragment .fade-in-then-out .scaled-image fig-alt="This is a Gi* hot spot map of the United States created using {ggplot2}. Its purpose is to show the type of maps that are possible to create using R as a GIS."}
+![](images/ggplot2-low-access-Gi-star-clusters.png){.fragment .fade-in-then-out .scaled-image}
 
-![](images/flexdashboard-bakery-map.png){.fragment .fade-in-then-out .scaled-image fig-alt="This is a screenshot of a {flexdashboard} interactive map of bakeries in the Richmond, VA metropolitan area. Its purpose is to show the type of maps that are possible to create using R as a GIS."}
-
+![](images/flexdashboard-bakery-map.png){.fragment .fade-in-then-out .scaled-image}
 :::
 
 ## Learn More
